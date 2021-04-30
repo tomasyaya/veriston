@@ -64,3 +64,45 @@ export type Fonts = {
     black: "#212529";
     transparent: "transparent";
   };
+
+  export type Colors = BasicColors &
+  BlueColors &
+  GreensColors &
+  RedsColors &
+  OrangeColors &
+  GreysColors;
+
+export type Miscellaneous = {
+  borderRadius: "4px";
+  borderRadiusL: "6px";
+  borderRadiusXL: "16px";
+};
+
+export type DesignTokenComponent = {
+  background?: string;
+  borderColor?: string;
+  borderRadius?: string;
+  shadow?: string;
+  textColor?: string;
+  textSize?: string;
+  textWeight?: number;
+};
+
+export type DesignTokens = {
+  background?: string;
+  surface?: string;
+  surfaceBorders?: string;
+  onSurface?: string;
+  controlBorders?: string;
+  disabledSurface?: string;
+  deepSurface?: string;
+  shallowSurface?: string;
+  successSurface?: string;
+  successDeep?: string;
+  errorSurface?: string;
+  errorDeep?: string;
+  warningSurface?: string;
+  warningDeep?: string;
+  infoSurface?: string;
+  infoDeep?: string; 
+};
