@@ -1,4 +1,11 @@
-
+export type Gutters = {
+    xl: 32;
+    l: 24;
+    base: 16;
+    s: 8;
+    xs: 4;
+  };
+  
 export type Fonts = {
     family: "'Lato', sans-serif";
     sizes: {
