@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
-import { Theme } from "../../styles";
+import { Theme } from "@/styles";
 import { Themes, ThemeProviderProps } from "./types";
 import { themes, themeSelectors, DEFAULT } from "./utils";
 
