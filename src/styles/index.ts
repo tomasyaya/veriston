@@ -5,7 +5,7 @@ export type Gutters = {
     s: 8;
     xs: 4;
   };
-  
+
 export type Fonts = {
     family: "'Lato', sans-serif";
     sizes: {
@@ -113,3 +113,13 @@ export type DesignTokens = {
   infoSurface?: string;
   infoDeep?: string; 
 };
+
+
+export type Theme = {
+    name: string;
+    gutters: Gutters;
+    fonts: Fonts;
+    colors: Colors;
+    miscellaneous: Miscellaneous;
+    designTokens?: DesignTokens;
+  };
