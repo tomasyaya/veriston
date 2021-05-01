@@ -16,13 +16,13 @@ const HEADERS: HeaderOption[] = [
 
 function Headers() {
   return (
-    <React.Fragment>
+    <TableRow>
       {HEADERS.map(({ value, label }) => (
         <TableCell header key={value}>
           {label}
         </TableCell>
       ))}
-    </React.Fragment>
+    </TableRow>
   );
 }
 
@@ -34,10 +34,14 @@ function MediaTable({ mediaFiles, curriedActions }: MediaTableProps) {
       </TableHeader>
       <TableBody>
         {mediaFiles.map((file) => (
-          <TableRow actions={curriedActions(file)}>
+          <TableRow actions={curriedActions(file)} key={file.id}>
             {HEADERS.map(({ value }) => {
               const currentValue = file[value];
-              return <TableCell key={currentValue}>{currentValue}</TableCell>;
+              return (
+                <TableCell key={`${file.id}_${currentValue}`}>
+                  {currentValue}
+                </TableCell>
+              );
             })}
           </TableRow>
         ))}

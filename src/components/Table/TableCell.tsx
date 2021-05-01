@@ -9,7 +9,7 @@ const defaultProps = {
 function TableCell({ children, header, ...rest }: TableCellProps) {
   const tagName = header ? "th" : "td";
   return (
-    <TableCellWrapper {...rest} tagName={tagName} header={header}>
+    <TableCellWrapper {...rest} tagName={tagName}>
       {children}
     </TableCellWrapper>
   );

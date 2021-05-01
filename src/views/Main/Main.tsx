@@ -3,6 +3,7 @@ import { getFiles } from "../../mocks/services";
 import { MediaTable } from "../../components/MediaTable";
 import { downloadUrl } from "../../utils/downloadUrl";
 import { MediaFile } from "../../mocks/types";
+import { TabList, Tab, TabPanel, Tabs } from "../../components/Tabs";
 
 function Main() {
   const [files, setFiles] = React.useState<any[]>([]);
@@ -25,7 +26,18 @@ function Main() {
         <input type="checkbox" name="image" id="image" />
       </div>
       <div>
-        <MediaTable curriedActions={curriedActions} mediaFiles={files} />
+        <Tabs defaultValue="table">
+          <TabList>
+            <Tab value="table">Table</Tab>
+            <Tab value="gallery">Gallery</Tab>
+          </TabList>
+          <TabPanel value="table">
+            <MediaTable curriedActions={curriedActions} mediaFiles={files} />
+          </TabPanel>
+          <TabPanel value="gallery">
+            <h1>Gallery</h1>
+          </TabPanel>
+        </Tabs>
       </div>
     </section>
   );
