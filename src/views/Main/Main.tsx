@@ -4,6 +4,7 @@ import { MediaTable } from "../../components/MediaTable";
 import { downloadUrl } from "../../utils/downloadUrl";
 import { MediaFile } from "../../mocks/types";
 import { TabList, Tab, TabPanel, Tabs } from "../../components/Tabs";
+import { Modal } from "../../components/Modal";
 
 function Main() {
   const [files, setFiles] = React.useState<any[]>([]);
