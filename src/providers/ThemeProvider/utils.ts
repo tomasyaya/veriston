@@ -1,5 +1,5 @@
 import { ThemeSelectors, Themes } from "./types";
-import defaultTheme from "@/styles/theme.default";
+import defaultTheme from "../../styles/theme.default";
 import { Theme } from "@/styles";
 
 export const DEFAULT = "default";
