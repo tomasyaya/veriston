@@ -4,7 +4,8 @@ import { MediaTable } from "../../components/MediaTable";
 import { downloadUrl } from "../../utils/downloadUrl";
 import { MediaFile } from "../../mocks/types";
 import { TabList, Tab, TabPanel, Tabs } from "../../components/Tabs";
-import { Modal } from "../../components/Modal";
+import { Gallery } from "../../components/Gallery";
+import { ThumbNail } from "../../components/ThumbNail";
 
 function Main() {
   const [files, setFiles] = React.useState<any[]>([]);
@@ -36,7 +37,16 @@ function Main() {
             <MediaTable curriedActions={curriedActions} mediaFiles={files} />
           </TabPanel>
           <TabPanel value="gallery">
-            <h1>Gallery</h1>
+            <Gallery>
+              {files.map((file) => (
+                <ThumbNail
+                  src={file.url}
+                  key={file.id}
+                  name={file.name}
+                  type={file.type}
+                />
+              ))}
+            </Gallery>
           </TabPanel>
         </Tabs>
       </div>
