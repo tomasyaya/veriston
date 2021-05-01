@@ -1,5 +1,5 @@
 import { audios, videos, images } from "./data";
-import { GetFilesReturnValue } from "./types";
+import { MediaFile } from "./types";
 
 function getRequest<P>(returnValue: P, time?: number): Promise<P> {
   const defaultTime = 1000;
@@ -8,7 +8,7 @@ function getRequest<P>(returnValue: P, time?: number): Promise<P> {
   );
 }
 
-export function getFiles(): Promise<GetFilesReturnValue> {
-  const files: GetFilesReturnValue = { audios, videos, images };
+export function getFiles(): Promise<MediaFile[]> {
+  const files: MediaFile[] = [...audios, ...videos, ...images];
   return getRequest(files);
 }
