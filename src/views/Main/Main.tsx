@@ -1,17 +1,11 @@
 import React from "react";
-import { findDOMNode } from "react-dom";
 import { getFiles } from "../../mocks/services";
 
 function Main() {
-  const [files, setFiles] = React.useState({});
+  const [files, setFiles] = React.useState<any[]>([]);
   React.useEffect(() => {
     getFiles().then((res) => setFiles(res));
   }, []);
-
-  const rows = Object.values(files).reduce(
-    (rows: any[], row) => rows.concat(row),
-    []
-  );
 
   return (
     <section>
@@ -24,29 +18,6 @@ function Main() {
         <input type="checkbox" name="video" id="video" />
         <label htmlFor="image">image</label>
         <input type="checkbox" name="image" id="image" />
-      </div>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>name</th>
-              <th>type</th>
-              <th>date</th>
-              <th>download</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((file: any) => {
-              return (
-                <tr key={file.id}>
-                  {["name", "type", "date", "url"].map((key, i) => (
-                    <td key={key + i}>{file[key]}</td>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
       </div>
     </section>
   );
