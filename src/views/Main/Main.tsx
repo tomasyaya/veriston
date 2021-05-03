@@ -1,10 +1,10 @@
 import React from "react";
-import { MediaTable } from "../../components/MediaTable";
-import { TabList, Tab, TabPanel, Tabs } from "../../components/Tabs";
-import { Gallery } from "../../components/Gallery";
-import { ThumbNail } from "../../components/ThumbNail";
-import { GalleryModal } from "../../components/GalleryModal";
-import { SearchBar } from "../../components/SearchBar";
+import { MediaTable } from "@/components/MediaTable";
+import { TabList, Tab, TabPanel, Tabs } from "@/components/Tabs";
+import { Gallery } from "@/components/Gallery";
+import { ThumbNail } from "@/components/ThumbNail";
+import { GalleryModal } from "@/components/GalleryModal";
+import { SearchBar } from "@/components/SearchBar";
 import { MainProps } from "./types";
 
 function Main({

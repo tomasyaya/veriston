@@ -1,4 +1,4 @@
-import { MediaFile } from "../../mocks/types";
+import { MediaFile } from "@/mocks/types";
 import { Action } from "../Table/types";
 
 export interface HeaderOption {
