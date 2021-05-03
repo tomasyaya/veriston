@@ -1,45 +1,24 @@
 import React from "react";
-
 import { MediaTable } from "../../components/MediaTable";
-import { downloadUrl } from "../../utils/downloadUrl";
-import { MediaFile } from "../../mocks/types";
 import { TabList, Tab, TabPanel, Tabs } from "../../components/Tabs";
 import { Gallery } from "../../components/Gallery";
 import { ThumbNail } from "../../components/ThumbNail";
-import { useFiles, useFilters, useSearch } from "./hooks";
-import { buildQuery, searchFiles } from "./utils";
 import { GalleryModal } from "../../components/GalleryModal";
-import { callAll } from "../../utils/callAll";
-import { DownloadIcon, LinkIcon } from "../../components/Icons";
-import { Icon } from "../../components/Icons/types";
-import { Action } from "../../components/Actions/types";
 import { SearchBar } from "../../components/SearchBar";
+import { MainProps } from "./types";
 
-function Main() {
-  const { values, handleFilters } = useFilters();
-  const query = buildQuery(values, "type");
-  const rawFiles = useFiles(query);
-  const { search, handleSearch } = useSearch();
-  const files = searchFiles(rawFiles, search, "name");
-  const [openModal, setOpenModal] = React.useState(false);
-  const [defaultPosition, setDefaultPosition] = React.useState(0);
-  const handleOpen = () => setOpenModal(true);
-
-  const curriedActions = (file: MediaFile, fileIndex?: number): Action[] => [
-    {
-      action: () => downloadUrl(file.url, file.name),
-      label: "download",
-      icon: DownloadIcon as Icon,
-    },
-    {
-      action: callAll(handleOpen, () => {
-        setDefaultPosition(fileIndex as number);
-      }),
-      label: "preview",
-      icon: LinkIcon as Icon,
-    },
-  ];
-
+function Main({
+  handleSearch,
+  search,
+  filters,
+  handleFilters,
+  curriedActions,
+  openModal,
+  handleClose,
+  files,
+  defaultPosition,
+  loading,
+}: MainProps) {
   return (
     <section>
       <SearchBar onChange={handleSearch} value={search} />
@@ -50,7 +29,7 @@ function Main() {
           type="checkbox"
           name="audio"
           id="audio"
-          checked={values.audio}
+          checked={filters.audio}
           onClick={handleFilters}
         />
         <label htmlFor="video">video</label>
@@ -58,7 +37,7 @@ function Main() {
           type="checkbox"
           name="video"
           id="video"
-          checked={values.video}
+          checked={filters.video}
           onClick={handleFilters}
         />
         <label htmlFor="image">image</label>
@@ -66,7 +45,7 @@ function Main() {
           type="checkbox"
           name="image"
           id="image"
-          checked={values.image}
+          checked={filters.image}
           onClick={handleFilters}
         />
       </div>
@@ -78,7 +57,11 @@ function Main() {
             <Tab value="gallery">Gallery</Tab>
           </TabList>
           <TabPanel value="table">
-            <MediaTable curriedActions={curriedActions} mediaFiles={files} />
+            <MediaTable
+              curriedActions={curriedActions}
+              mediaFiles={files}
+              loading={loading}
+            />
           </TabPanel>
           <TabPanel value="gallery">
             <Gallery>
@@ -97,7 +80,7 @@ function Main() {
         </Tabs>
         <GalleryModal
           open={openModal}
-          onClose={() => setOpenModal(false)}
+          onClose={handleClose}
           defaultPosition={defaultPosition}
         >
           {files.map((file) => (

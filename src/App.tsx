@@ -1,10 +1,13 @@
 import { Main } from "./views/Main";
 import { Layout } from "./layout";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 function App() {
   return (
     <Layout>
-      <Main />
+      <ErrorBoundary>
+        <Main />
+      </ErrorBoundary>
     </Layout>
   );
 }
