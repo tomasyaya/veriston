@@ -1,17 +1,8 @@
 import React from "react";
 
-export interface Action {
-  label: string;
-  action: () => void;
-}
-
 export interface TableCellProps extends React.HTMLAttributes<HTMLTableElement> {
   children?: React.ReactNode;
   header?: boolean;
-}
-
-export interface ActionsProps {
-  actions: Action[];
 }
 
 export interface TableBodyProps

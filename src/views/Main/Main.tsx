@@ -1,40 +1,35 @@
 import React from "react";
-
 import { MediaTable } from "../../components/MediaTable";
-import { downloadUrl } from "../../utils/downloadUrl";
-import { MediaFile } from "../../mocks/types";
 import { TabList, Tab, TabPanel, Tabs } from "../../components/Tabs";
 import { Gallery } from "../../components/Gallery";
 import { ThumbNail } from "../../components/ThumbNail";
-import { useFiles, useFilters, useSearch } from "./hooks";
-import { buildQuery, searchFiles } from "./utils";
+import { GalleryModal } from "../../components/GalleryModal";
+import { SearchBar } from "../../components/SearchBar";
+import { MainProps } from "./types";
 
-function Main() {
-  const { values, handleFilters } = useFilters();
-  const query = buildQuery(values, "type");
-  const rawFiles = useFiles(query);
-  const { search, handleSearch } = useSearch();
-  const files = searchFiles(rawFiles, search, "name");
-  const curriedActions = (file: MediaFile) => [
-    { action: () => downloadUrl(file.url, file.name), label: "download" },
-  ];
-
+function Main({
+  handleSearch,
+  search,
+  filters,
+  handleFilters,
+  curriedActions,
+  openModal,
+  handleClose,
+  files,
+  defaultPosition,
+  loading,
+}: MainProps) {
   return (
     <section>
-      <div>
-        <label htmlFor="search-bar">Search bar</label>
-        <input
-          type="text"
-          id="search-bar"
-          value={search}
-          onChange={handleSearch}
-        />
+      <SearchBar onChange={handleSearch} value={search} />
+      <div style={{ padding: "20px" }}>
+        <h2>Filters</h2>
         <label htmlFor="audio">audio</label>
         <input
           type="checkbox"
           name="audio"
           id="audio"
-          checked={values.audio}
+          checked={filters.audio}
           onClick={handleFilters}
         />
         <label htmlFor="video">video</label>
@@ -42,7 +37,7 @@ function Main() {
           type="checkbox"
           name="video"
           id="video"
-          checked={values.video}
+          checked={filters.video}
           onClick={handleFilters}
         />
         <label htmlFor="image">image</label>
@@ -50,10 +45,11 @@ function Main() {
           type="checkbox"
           name="image"
           id="image"
-          checked={values.image}
+          checked={filters.image}
           onClick={handleFilters}
         />
       </div>
+
       <div>
         <Tabs defaultValue="table">
           <TabList>
@@ -61,21 +57,42 @@ function Main() {
             <Tab value="gallery">Gallery</Tab>
           </TabList>
           <TabPanel value="table">
-            <MediaTable curriedActions={curriedActions} mediaFiles={files} />
+            <MediaTable
+              curriedActions={curriedActions}
+              mediaFiles={files}
+              loading={loading}
+            />
           </TabPanel>
           <TabPanel value="gallery">
             <Gallery>
-              {files.map((file) => (
+              {files.map((file, i) => (
                 <ThumbNail
+                  size="small"
                   src={file.url}
                   key={file.id}
                   name={file.name}
                   type={file.type}
+                  actions={curriedActions(file, i)}
                 />
               ))}
             </Gallery>
           </TabPanel>
         </Tabs>
+        <GalleryModal
+          open={openModal}
+          onClose={handleClose}
+          defaultPosition={defaultPosition}
+        >
+          {files.map((file) => (
+            <ThumbNail
+              size="full"
+              src={file.url}
+              key={file.id}
+              name={file.name}
+              type={file.type}
+            />
+          ))}
+        </GalleryModal>
       </div>
     </section>
   );

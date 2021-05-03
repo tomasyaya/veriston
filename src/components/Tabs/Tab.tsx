@@ -1,5 +1,6 @@
 import React from "react";
 import { useTabs } from "./TabsContext";
+import { TabBtn } from "./styles";
 
 interface TabProps {
   children: React.ReactNode;
@@ -15,9 +16,9 @@ function Tab({ children, value }: TabProps) {
     }
   };
   return (
-    <button type="button" role="tab" onClick={handleClick}>
+    <TabBtn type="button" role="tab" onClick={handleClick}>
       {children}
-    </button>
+    </TabBtn>
   );
 }
 

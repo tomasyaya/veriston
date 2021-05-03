@@ -1,26 +1,14 @@
 import React from "react";
 import TableCell from "./TableCell";
 import { TableRowWrapper } from "./styles";
-import { Action, ActionsProps, TableRowProps } from "./types";
+import { TableRowProps } from "./types";
+import { Actions } from "../Actions";
+import { Action } from "../Actions/types";
 
 const defaultProps = {
   actions: [],
   header: false,
 };
-
-function Actions({ actions }: ActionsProps) {
-  return (
-    <React.Fragment>
-      {actions.map(({ label, action }) => {
-        return (
-          <button onClick={action} key={label}>
-            {label}
-          </button>
-        );
-      })}
-    </React.Fragment>
-  );
-}
 
 function extendChildren(
   children: React.ReactNode,

@@ -9,21 +9,21 @@ export const images = [
   {
     id: nanoid(),
     type: IMAGE,
-    name: "cat",
+    name: "lagoon",
     url: "https://unsplash.com/photos/5tRmLGguL3Q/download?force=true",
     date: "10/10/20",
   },
   {
     id: nanoid(),
     type: IMAGE,
-    name: "dog",
+    name: "parrot",
     url: "https://unsplash.com/photos/4euubO4CasU/download?force=true",
     date: "10/10/20",
   },
   {
     id: nanoid(),
     type: IMAGE,
-    name: "pig",
+    name: "A garden",
     url: "https://unsplash.com/photos/brVkInFjtuo/download?force=true",
     date: "10/10/20",
   },
@@ -33,7 +33,7 @@ export const videos = [
   {
     id: nanoid(),
     type: VIDEO,
-    name: "moto",
+    name: "snow",
     url:
       "https://pexels.com/es-es/video/855615/download/?search_query=&amp;tracking_id=5kv6ed4g81",
     date: "10/10/20",
@@ -41,7 +41,7 @@ export const videos = [
   {
     id: nanoid(),
     type: VIDEO,
-    name: "car",
+    name: "beach",
     url:
       "https://pexels.com/es-es/video/1739010/download/?search_query=&amp;tracking_id=5kv6ed4g81",
     date: "10/10/20",
@@ -49,9 +49,9 @@ export const videos = [
   {
     id: nanoid(),
     type: VIDEO,
-    name: "bike",
+    name: "lake",
     url:
-      "https://pexels.com/video/4626373/download/?search_query=&tracking_id=g87h4sck32g",
+      "https://pexels.com/video/5640074/download/?search_query=fantasy&amp;tracking_id=g87h4sck32g",
     date: "10/10/20",
   },
 ];

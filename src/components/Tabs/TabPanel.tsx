@@ -1,5 +1,6 @@
 import React from "react";
 import { useTabs } from "./TabsContext";
+import { TabPanelContainer } from "./styles";
 
 interface TabPanelProp {
   value: string;
@@ -9,9 +10,7 @@ interface TabPanelProp {
 function TabPanel({ value, children }: TabPanelProp) {
   const { selectedTab } = useTabs();
   const isActive = selectedTab === value;
-  return (
-    <div style={{ display: !isActive ? "none" : "block" }}>{children}</div>
-  );
+  return <TabPanelContainer isActive={isActive}>{children}</TabPanelContainer>;
 }
 
 export default TabPanel;

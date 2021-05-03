@@ -7,6 +7,7 @@ import {
   TableHeader,
 } from "../Table";
 import { HeaderOption, MediaTableProps } from "./types";
+import { Suspense } from "../Suspense";
 
 const HEADERS: HeaderOption[] = [
   { value: "name", label: "Name" },
@@ -16,7 +17,7 @@ const HEADERS: HeaderOption[] = [
 
 function Headers() {
   return (
-    <TableRow>
+    <TableRow header>
       {HEADERS.map(({ value, label }) => (
         <TableCell header key={value}>
           {label}
@@ -26,25 +27,30 @@ function Headers() {
   );
 }
 
-function MediaTable({ mediaFiles, curriedActions }: MediaTableProps) {
+function MediaTable({ mediaFiles, curriedActions, loading }: MediaTableProps) {
   return (
     <TableContainer>
       <TableHeader>
         <Headers />
       </TableHeader>
       <TableBody>
-        {mediaFiles.map((file) => (
-          <TableRow actions={curriedActions(file)} key={file.id}>
-            {HEADERS.map(({ value }) => {
-              const currentValue = file[value];
-              return (
-                <TableCell key={`${file.id}_${currentValue}`}>
-                  {currentValue}
-                </TableCell>
-              );
-            })}
-          </TableRow>
-        ))}
+        <Suspense loading={loading}>
+          {mediaFiles.map((file, fileIndex, files) => (
+            <TableRow
+              actions={curriedActions(file, fileIndex, files)}
+              key={file.id}
+            >
+              {HEADERS.map(({ value }) => {
+                const currentValue = file[value];
+                return (
+                  <TableCell key={`${file.id}_${currentValue}`}>
+                    {currentValue}
+                  </TableCell>
+                );
+              })}
+            </TableRow>
+          ))}
+        </Suspense>
       </TableBody>
     </TableContainer>
   );

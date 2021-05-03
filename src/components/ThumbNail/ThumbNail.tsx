@@ -1,13 +1,27 @@
 import { selectThumb } from "./selector";
 import { ThumbNailProp } from "./types";
+import { Action } from "../Actions/types";
+import { Actions } from "../Actions";
+import { ThumbContainer } from "./styles";
 
-function ThumbNail({ type, src, name }: ThumbNailProp) {
+function hasActions(actions?: Action[]) {
+  return Array.isArray(actions) && actions.length;
+}
+
+function ThumbNail({
+  type,
+  src,
+  name,
+  actions,
+  size = "normal",
+}: ThumbNailProp) {
   const Component = selectThumb(type);
   return (
-    <div style={{ height: "100%", width: "100%" }}>
+    <ThumbContainer size={size}>
       <Component src={src} alt={name} />
       <p>{name}</p>
-    </div>
+      {hasActions(actions) && <Actions actions={actions as Action[]} />}
+    </ThumbContainer>
   );
 }
 
