@@ -10,6 +10,9 @@ import { useFiles, useFilters, useSearch } from "./hooks";
 import { buildQuery, searchFiles } from "./utils";
 import { GalleryModal } from "../../components/GalleryModal";
 import { callAll } from "../../utils/callAll";
+import { DownloadIcon, LinkIcon } from "../../components/Icons";
+import { Icon } from "../../components/Icons/types";
+import { Action } from "../../components/Table/types";
 
 function Main() {
   const { values, handleFilters } = useFilters();
@@ -21,13 +24,18 @@ function Main() {
   const [defaultPosition, setDefaultPosition] = React.useState(0);
   const handleOpen = () => setOpenModal(true);
 
-  const curriedActions = (file: MediaFile, fileIndex?: number) => [
-    { action: () => downloadUrl(file.url, file.name), label: "download" },
+  const curriedActions = (file: MediaFile, fileIndex?: number): Action[] => [
+    {
+      action: () => downloadUrl(file.url, file.name),
+      label: "download",
+      icon: DownloadIcon as Icon,
+    },
     {
       action: callAll(handleOpen, () => {
         setDefaultPosition(fileIndex as number);
       }),
       label: "preview",
+      icon: LinkIcon as Icon,
     },
   ];
 
@@ -77,12 +85,13 @@ function Main() {
           </TabPanel>
           <TabPanel value="gallery">
             <Gallery>
-              {files.map((file) => (
+              {files.map((file, i) => (
                 <ThumbNail
                   src={file.url}
                   key={file.id}
                   name={file.name}
                   type={file.type}
+                  actions={curriedActions(file, i)}
                 />
               ))}
             </Gallery>

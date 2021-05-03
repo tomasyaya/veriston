@@ -10,15 +10,15 @@ const defaultProps = {
 
 function Actions({ actions }: ActionsProps) {
   return (
-    <React.Fragment>
-      {actions.map(({ label, action }) => {
+    <div>
+      {actions.map(({ label, action, icon: Icon }) => {
         return (
           <button onClick={action} key={label}>
-            {label}
+            <Icon height={15} width={15} />
           </button>
         );
       })}
-    </React.Fragment>
+    </div>
   );
 }
 

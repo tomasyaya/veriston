@@ -1,5 +1,6 @@
 import { Filters } from "./types";
 import { MediaFile } from "../../mocks/types";
+
 export function isLast(index: number, arr: any[]) {
   return index === arr.length - 1;
 }
