@@ -8,6 +8,7 @@ export interface HeaderOption {
 
 export interface MediaTableProps {
   mediaFiles: MediaFile[];
+  loading?: boolean;
   curriedActions: (
     file: MediaFile,
     fileIndex?: number,
