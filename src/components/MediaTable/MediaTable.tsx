@@ -33,8 +33,11 @@ function MediaTable({ mediaFiles, curriedActions }: MediaTableProps) {
         <Headers />
       </TableHeader>
       <TableBody>
-        {mediaFiles.map((file) => (
-          <TableRow actions={curriedActions(file)} key={file.id}>
+        {mediaFiles.map((file, fileIndex, files) => (
+          <TableRow
+            actions={curriedActions(file, fileIndex, files)}
+            key={file.id}
+          >
             {HEADERS.map(({ value }) => {
               const currentValue = file[value];
               return (

@@ -8,6 +8,8 @@ import { Gallery } from "../../components/Gallery";
 import { ThumbNail } from "../../components/ThumbNail";
 import { useFiles, useFilters, useSearch } from "./hooks";
 import { buildQuery, searchFiles } from "./utils";
+import { GalleryModal } from "../../components/GalleryModal";
+import { callAll } from "../../utils/callAll";
 
 function Main() {
   const { values, handleFilters } = useFilters();
@@ -15,8 +17,18 @@ function Main() {
   const rawFiles = useFiles(query);
   const { search, handleSearch } = useSearch();
   const files = searchFiles(rawFiles, search, "name");
-  const curriedActions = (file: MediaFile) => [
+  const [openModal, setOpenModal] = React.useState(false);
+  const [defaultPosition, setDefaultPosition] = React.useState(0);
+  const handleOpen = () => setOpenModal(true);
+
+  const curriedActions = (file: MediaFile, fileIndex?: number) => [
     { action: () => downloadUrl(file.url, file.name), label: "download" },
+    {
+      action: callAll(handleOpen, () => {
+        setDefaultPosition(fileIndex as number);
+      }),
+      label: "preview",
+    },
   ];
 
   return (
@@ -76,6 +88,22 @@ function Main() {
             </Gallery>
           </TabPanel>
         </Tabs>
+        <GalleryModal
+          open={openModal}
+          onClose={() => setOpenModal(false)}
+          defaultPosition={defaultPosition}
+        >
+          {files.map((file) => (
+            <div style={{ width: "200px", height: "200px" }}>
+              <ThumbNail
+                src={file.url}
+                key={file.id}
+                name={file.name}
+                type={file.type}
+              />
+            </div>
+          ))}
+        </GalleryModal>
       </div>
     </section>
   );
