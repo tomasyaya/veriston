@@ -2,6 +2,7 @@ import React from "react";
 import { UseFilters, Filters, UseGalleryModal } from "./types";
 import { getFiles } from "@/mocks/services";
 import { MediaFile } from "@/mocks/types";
+import { useSafeDispatch } from "@/hooks";
 
 export function useFilters(): UseFilters {
   const [filters, setFilters] = React.useState<Filters>({});
@@ -15,8 +16,14 @@ export function useFilters(): UseFilters {
 export function useFiles(
   query: string
 ): { files: MediaFile[]; loading: boolean } {
-  const [files, setFiles] = React.useState<MediaFile[]>([]);
-  const [loading, setLoading] = React.useState(false);
+  const [files, unsafeSetFiles] = React.useState<MediaFile[]>([]);
+  const [loading, unsafeSetLoading] = React.useState(false);
+  const setLoading = useSafeDispatch<React.SetStateAction<boolean>>(
+    unsafeSetLoading
+  );
+  const setFiles = useSafeDispatch<React.SetStateAction<MediaFile[]>>(
+    unsafeSetFiles
+  );
   React.useEffect(() => {
     (async () => {
       setLoading(true);
