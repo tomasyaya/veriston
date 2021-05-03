@@ -13,5 +13,5 @@ export interface UseFilters {
 
 export interface UserSearch {
   search: string;
-  handleSearch: (e: React.BaseSyntheticEvent) => void;
+  handleSearch: (search: string) => void;
 }

@@ -21,11 +21,9 @@ export function useFiles(query: string): MediaFile[] {
 }
 
 export function useSearch() {
-  const [search, setSearch] = React.useState("");
-
-  const handleSearch = ({ target }: React.BaseSyntheticEvent) => {
-    setSearch(target.value);
+  const [search, setSearch] = React.useState<string>("");
+  const handleSearch = (search: string) => {
+    setSearch(search);
   };
-
   return { search, handleSearch };
 }

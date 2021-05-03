@@ -13,6 +13,7 @@ import { callAll } from "../../utils/callAll";
 import { DownloadIcon, LinkIcon } from "../../components/Icons";
 import { Icon } from "../../components/Icons/types";
 import { Action } from "../../components/Actions/types";
+import { SearchBar } from "../../components/SearchBar";
 
 function Main() {
   const { values, handleFilters } = useFilters();
@@ -40,15 +41,10 @@ function Main() {
   ];
 
   return (
-    <section style={{ margin: "0 auto" }}>
-      <div>
-        <label htmlFor="search-bar">Search bar</label>
-        <input
-          type="text"
-          id="search-bar"
-          value={search}
-          onChange={handleSearch}
-        />
+    <section>
+      <SearchBar onChange={handleSearch} value={search} />
+      <div style={{ padding: "20px" }}>
+        <h2>Filters</h2>
         <label htmlFor="audio">audio</label>
         <input
           type="checkbox"
@@ -74,6 +70,7 @@ function Main() {
           onClick={handleFilters}
         />
       </div>
+
       <div>
         <Tabs defaultValue="table">
           <TabList>
@@ -87,6 +84,7 @@ function Main() {
             <Gallery>
               {files.map((file, i) => (
                 <ThumbNail
+                  size="small"
                   src={file.url}
                   key={file.id}
                   name={file.name}
@@ -103,14 +101,13 @@ function Main() {
           defaultPosition={defaultPosition}
         >
           {files.map((file) => (
-            <div style={{ width: "200px", height: "200px" }}>
-              <ThumbNail
-                src={file.url}
-                key={file.id}
-                name={file.name}
-                type={file.type}
-              />
-            </div>
+            <ThumbNail
+              size="full"
+              src={file.url}
+              key={file.id}
+              name={file.name}
+              type={file.type}
+            />
           ))}
         </GalleryModal>
       </div>

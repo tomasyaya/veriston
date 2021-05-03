@@ -1,6 +1,6 @@
 import { Action } from "../Table/types";
 
-export type Size = "normal" | "full";
+export type Size = "normal" | "full" | "small";
 
 export interface ThumbProps {
   src: string;
