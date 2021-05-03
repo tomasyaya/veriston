@@ -12,7 +12,7 @@ import { GalleryModal } from "../../components/GalleryModal";
 import { callAll } from "../../utils/callAll";
 import { DownloadIcon, LinkIcon } from "../../components/Icons";
 import { Icon } from "../../components/Icons/types";
-import { Action } from "../../components/Table/types";
+import { Action } from "../../components/Actions/types";
 
 function Main() {
   const { values, handleFilters } = useFilters();
@@ -40,7 +40,7 @@ function Main() {
   ];
 
   return (
-    <section>
+    <section style={{ margin: "0 auto" }}>
       <div>
         <label htmlFor="search-bar">Search bar</label>
         <input

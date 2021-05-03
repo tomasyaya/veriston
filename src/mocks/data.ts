@@ -51,7 +51,7 @@ export const videos = [
     type: VIDEO,
     name: "bike",
     url:
-      "https://pexels.com/video/4626373/download/?search_query=&tracking_id=g87h4sck32g",
+      "https://pexels.com/video/5640074/download/?search_query=fantasy&amp;tracking_id=g87h4sck32g",
     date: "10/10/20",
   },
 ];

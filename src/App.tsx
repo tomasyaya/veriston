@@ -1,7 +1,12 @@
 import { Main } from "./views/Main";
+import { Layout } from "./layout";
 
 function App() {
-  return <Main />;
+  return (
+    <Layout>
+      <Main />
+    </Layout>
+  );
 }
 
 export default App;

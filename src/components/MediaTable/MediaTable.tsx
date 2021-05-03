@@ -16,7 +16,7 @@ const HEADERS: HeaderOption[] = [
 
 function Headers() {
   return (
-    <TableRow>
+    <TableRow header>
       {HEADERS.map(({ value, label }) => (
         <TableCell header key={value}>
           {label}

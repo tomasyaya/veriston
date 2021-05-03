@@ -101,6 +101,25 @@ theme.designTokens = {
   infoSurface: theme.colors.blue200,
   warningDeep: theme.colors.orange300,
   warningSurface: theme.colors.orange200,
+  background: theme.colors.grey50,
+  surface: theme.colors.white,
+  onSurface: theme.colors.black,
+  surfaceBorders: theme.colors.grey200,
+  shallowSurface: theme.colors.grey50,
+  controlBorders: theme.colors.grey300,
+  disabledSurface: theme.colors.grey150,
+  deepSurface: theme.colors.grey100,
+  table: {
+    textSize: theme.fonts.sizes.base,
+    textSizeHeader: theme.fonts.sizes.helperText,
+    textWeight: theme.fonts.weights.light,
+    textWeightHeader: theme.fonts.weights.semiBold,
+    background: theme.colors.white,
+    borderColor: theme.colors.grey200,
+    hoverBackground: theme.colors.grey50,
+    iconFill: theme.colors.black,
+    iconFillActive: theme.colors.blue200,
+  },
 };
 
 export default theme;
