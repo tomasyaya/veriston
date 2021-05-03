@@ -1,23 +1,9 @@
 import React from "react";
 import { Modal } from "../Modal";
-
-function childrenToArray(children: React.ReactNode) {
-  return React.Children.toArray(children);
-}
-function getCurrentElement(children: React.ReactNode, position: number) {
-  return childrenToArray(children)[position];
-}
-
-function getLastPosition(children: React.ReactNode) {
-  return childrenToArray(children).length - 1;
-}
-
-interface GalleryModalProps {
-  open: boolean;
-  defaultPosition?: number;
-  children: React.ReactNode;
-  onClose?: () => void;
-}
+import { getCurrentElement, getLastPosition } from "./utils";
+import { CloseIcon, ArrowLeftIcon, ArrowRightIcon } from "../Icons";
+import { Section, SliderContainer, CloseCtn, IconBtn } from "./styles";
+import { GalleryModalProps } from "./types";
 
 function GalleryModal({
   open,
@@ -43,20 +29,26 @@ function GalleryModal({
   };
   return (
     <Modal open={open}>
-      <section>
-        <div>
+      <Section>
+        <CloseCtn>
+          <IconBtn onClick={onClose}>
+            <CloseIcon height={15} width={15} />
+          </IconBtn>
+        </CloseCtn>
+        <SliderContainer>
           <div>
-            <button onClick={handleLeft}>left</button>
+            <IconBtn onClick={handleLeft}>
+              <ArrowLeftIcon height={20} width={20} />
+            </IconBtn>
           </div>
           <div>{currentElement}</div>
           <div>
-            <button onClick={handleRight}>right</button>
+            <IconBtn onClick={handleRight}>
+              <ArrowRightIcon height={20} width={20} />
+            </IconBtn>
           </div>
-        </div>
-        <div>
-          <button onClick={onClose}>close</button>
-        </div>
-      </section>
+        </SliderContainer>
+      </Section>
     </Modal>
   );
 }
