@@ -1,11 +1,11 @@
-import { downloadUrl } from "../../utils/downloadUrl";
-import { MediaFile } from "../../mocks/types";
+import { downloadUrl } from "@/utils/downloadUrl";
+import { MediaFile } from "@/mocks/types";
 import { useFiles, useFilters, useSearch, useGalleryModal } from "./hooks";
 import { buildQuery, searchFiles } from "./utils";
-import { callAll } from "../../utils/callAll";
-import { DownloadIcon, LinkIcon } from "../../components/Icons";
-import { Icon } from "../../components/Icons/types";
-import { Action } from "../../components/Actions/types";
+import { callAll } from "@/utils/callAll";
+import { DownloadIcon, LinkIcon } from "@/components/Icons";
+import { Icon } from "@/components/Icons/types";
+import { Action } from "@/components/Actions/types";
 import { Filters } from "./types";
 import Main from "./Main";
 

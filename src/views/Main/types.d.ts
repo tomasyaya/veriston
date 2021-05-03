@@ -1,8 +1,8 @@
 import React from "react";
 
-import { MediaFile } from "../../mocks/types";
+import { MediaFile } from "@/mocks/types";
 
-import { Action } from "../../components/Actions/types";
+import { Action } from "@/components/Actions/types";
 
 export interface Filters {
   audio?: boolean;

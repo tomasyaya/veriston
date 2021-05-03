@@ -1,7 +1,7 @@
 import React from "react";
 import { UseFilters, Filters, UseGalleryModal } from "./types";
-import { getFiles } from "../../mocks/services";
-import { MediaFile } from "../../mocks/types";
+import { getFiles } from "@/mocks/services";
+import { MediaFile } from "@/mocks/types";
 
 export function useFilters(): UseFilters {
   const [filters, setFilters] = React.useState<Filters>({});
