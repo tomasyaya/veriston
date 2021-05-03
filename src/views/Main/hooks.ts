@@ -31,7 +31,7 @@ export function useFiles(
       setFiles(data);
       setLoading(false);
     })();
-  }, [query]);
+  }, [query, setFiles, setLoading]);
   return { files, loading };
 }
 

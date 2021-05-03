@@ -1,9 +1,9 @@
 import React from "react";
 import { Modal } from "../Modal";
-import { getCurrentElement, getLastPosition } from "./utils";
 import { CloseIcon, ArrowLeftIcon, ArrowRightIcon } from "../Icons";
 import { Section, SliderContainer, CloseCtn, IconBtn } from "./styles";
 import { GalleryModalProps } from "./types";
+import { useGalleryModal } from "./hooks";
 
 function GalleryModal({
   open,
@@ -11,22 +11,11 @@ function GalleryModal({
   children,
   onClose,
 }: GalleryModalProps) {
-  const [position, setPosition] = React.useState(defaultPosition);
-  const currentElement = getCurrentElement(children, position);
-  const handleLeft = () => {
-    const nextPosition = position - 1;
-    const startOver = nextPosition < 0;
-    const lastPosition = getLastPosition(children);
-    const p = startOver ? lastPosition : nextPosition;
-    setPosition(p);
-  };
-  const handleRight = () => {
-    const nextPosition = position + 1;
-    const lastPosition = getLastPosition(children);
-    const startOver = nextPosition > lastPosition;
-    const p = startOver ? 0 : nextPosition;
-    setPosition(p);
-  };
+  const { handleLeft, handleRight, currentElement } = useGalleryModal(
+    children,
+    defaultPosition
+  );
+
   return (
     <Modal open={open}>
       <Section>
